@@ -8,8 +8,8 @@
                     <p class="main_slide_content text-white">Encontre o <b>Imóvel ideal</b> para você e <b>sua
                             família</b>
                         morar na praia!</p>
-                    <a href="javascript:void(0);" class="btn btn-front btn-lg text-white">Quero <b>Alugar</b>!</a>
-                    <a href="javascript:void(0);" class="btn btn-front btn-lg text-white">Quero <b>Comprar</b>!</a>
+                    <a href="{{ route('web.rent') }}" class="btn btn-front btn-lg text-white">Quero <b>Alugar</b>!</a>
+                    <a href="{{ route('web.buy') }}" class="btn btn-front btn-lg text-white">Quero <b>Comprar</b>!</a>
                 </div>
             </div>
         </div>
@@ -18,7 +18,8 @@
     <div class="main_filter">
         <div class="container my-5">
             <div class="row">
-                <form action="" class="form-inline w-100">
+                <form action="{{ route('web.filter') }}" method="post" class="form-inline w-100">
+                    @csrf
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="search" class="mb-2"><b>Comprar ou Alugar?</b></label>
                         <select class="selectpicker" id="search" name="filter_search" title="Escolha..." data-index="1"
@@ -30,63 +31,27 @@
                     <div class="form-group col-12 col-sm-6 col-lg-3">
                         <label for="category" class="mb-2"><b>O que você quer?</b></label>
                         <select class="selectpicker" id="category" name="filter_category" title="Escolha..."
-                                data-index="2">
-                            <option value="">Imóvel Residencial</option>
-                            <option value="">Comercial/Industrial</option>
-                            <option value="">Terreno</option>
+                                data-index="2" data-action="{{ route('component.main-filter.category') }}">
+                            <option disabled>Selecione o filtro anterior</option>
                         </select>
                     </div>
 
                     <div class="form-group col-12 col-sm-6 mt-sm-2 mt col-lg-3 mt-lg-0">
                         <label for="type" class="mb-2 d-block"><b>Qual o tipo do imóvel?</b></label>
-                        <select class="selectpicker input-large" id="type" name="filter_type" multiple
-                                data-actions-box="true" data-index="3">
-                            <option value="">Casa</option>
-                            <option value="">Apartamento</option>
-                            <option value="">Terreno</option>
-                            <option value="">Sala Comercial</option>
-                            <option value="">Galpão</option>
-                            <option value="">Casa</option>
-                            <option value="">Apartamento</option>
-                            <option value="">Terreno</option>
-                            <option value="">Sala Comercial</option>
-                            <option value="">Galpão</option>
-                            <option value="">Casa</option>
-                            <option value="">Apartamento</option>
-                            <option value="">Terreno</option>
-                            <option value="">Sala Comercial</option>
-                            <option value="">Galpão</option>
-                            <option value="">Casa</option>
-                            <option value="">Apartamento</option>
-                            <option value="">Terreno</option>
-                            <option value="">Sala Comercial</option>
-                            <option value="">Galpão</option>
+                        <select class="selectpicker input-large" id="type" name="filter_type" title="Escolha..."
+                                multiple
+                                data-actions-box="true" data-index="3"
+                                data-action="{{ route('component.main-filter.type') }}">
+                            <option disabled>Selecione o filtro anterior</option>
                         </select>
                     </div>
                     <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                         <label for="search_locale" class="mb-2"><b>Onde você quer?</b></label>
-                        <select class="selectpicker" name="filter_neighborhood" id="neighborhood" data-index="4"
+                        <select class="selectpicker" name="filter_neighborhood" id="neighborhood"
                                 title="Escolha..." multiple
-                                data-actions-box="true">
-                            <option value="">Campeche</option>
-                            <option value="">Rio Tavares</option>
-                            <option value="">Morro das Pedras</option>
-                            <option value="">Pântano do Sul</option>
-                            <option value="">Matadeiro</option>
-                            <option value="">Armação</option>
-
-                            <option value="">Campeche</option>
-                            <option value="">Rio Tavares</option>
-                            <option value="">Morro das Pedras</option>
-                            <option value="">Pântano do Sul</option>
-                            <option value="">Matadeiro</option>
-                            <option value="">Armação</option>
-                            <option value="">Campeche</option>
-                            <option value="">Rio Tavares</option>
-                            <option value="">Morro das Pedras</option>
-                            <option value="">Pântano do Sul</option>
-                            <option value="">Matadeiro</option>
-                            <option value="">Armação</option>
+                                data-actions-box="true" data-index="4"
+                                data-action="{{ route('component.main-filter.neighborhood') }}">
+                            <option disabled>Selecione o filtro anterior</option>
                         </select>
                     </div>
 
@@ -96,46 +61,32 @@
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Quartos</b></label>
                                 <select class="selectpicker" name="filter_bedrooms" id="bedrooms" title="Escolha..."
-                                        data-index="5">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                        data-index="5" data-action="{{ route('component.main-filter.bedrooms') }}">
+                                    <option disabled>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Suítes</b></label>
                                 <select class="selectpicker" name="filter_suites" id="suites" title="Escolha..."
-                                        data-index="6">
-                                    <option value="">0</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                        data-index="6" data-action="{{ route('component.main-filter.suites') }}">
+                                    <option disabled>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Banheiros</b></label>
                                 <select class="selectpicker" name="filter_bathrooms" id="bathrooms" title="Escolha..."
-                                        data-index="7">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                        data-index="7" data-action="{{ route('component.main-filter.bathrooms') }}">
+                                    <option disabled>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-3 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Garagem</b></label>
                                 <select class="selectpicker" name="filter_garage" id="garage" title="Escolha..."
-                                        data-index="8">
-                                    <option value="">0</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                        data-index="8" data-action="{{ route('component.main-filter.garage') }}">
+                                    <option disabled>Selecione o filtro anterior</option>
                                 </select>
                             </div>
                         </div>
@@ -144,22 +95,16 @@
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-6 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Preço Base</b></label>
                                 <select class="selectpicker" name="filter_base" id="base" title="Escolha..."
-                                        data-index="9">
-                                    <option value="">A partir de R$ 100.000,00</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                        data-index="9" data-action="{{ route('component.main-filter.basePrice') }}">
+                                    <option disabled>Selecione o filtro anterior</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-12 col-sm-6 mt-sm-2 col-lg-6 mt-lg-0">
                                 <label for="bedrooms" class="mb-2"><b>Preço Limite</b></label>
                                 <select class="selectpicker" name="filter_limit" id="limit" title="Escolha..."
-                                        data-index="10">
-                                    <option value="">Até R$ 1.000.000,00</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4+</option>
+                                        data-index="10" data-action="{{ route('component.main-filter.limitPrice') }}">
+                                    <option disabled>Selecione o filtro anterior</option>
                                 </select>
                             </div>
                         </div>
@@ -328,7 +273,7 @@
                                     <p class="main_properties_item_type">{{ $property->type }}
                                         - {{ $property->neighborhood }} <i
                                             class="icon-location-arrow icon-notext"></i></p>
-                                    <p class="main_properties_price text-front">R$ {{ $property->rent_price }}</p>
+                                    <p class="main_properties_price text-front">R$ {{ $property->rent_price }}/mês</p>
                                     <a href="{{ route('web.rentProperty', ['slug' => $property->slug]) }}"
                                        class="btn btn-front btn-block">Ver Imóvel</a>
                                 </div>

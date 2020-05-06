@@ -54,7 +54,13 @@
                         <div class="main_property_price pt-4 text-muted">
                             <p class="main_property_price_small">IPTU:
                                 R$ {{ $property->tribute }} {{ ($property->condominium != '0,00' ? '| Condomínio: R$ '. $property->condominium : '') }}</p>
-                            <p class="main_property_price_big">Valor: R$ {{ $property->sale_price }}</p>
+                            @if(!empty($type) && $type == 'sale' || session('sale') == true)
+                                <p class="main_property_price_big">Valor do Imóvel: R$ {{ $property->sale_price }}</p>
+                            @elseif(!empty($type) && $type == 'rent' || session('rent') == true)
+                                <p class="main_property_price_big">Valor da Locação: R$ {{ $property->rent_price }}/mês</p>
+                            @else
+                                <p class="main_property_price_big">Entre em contato com a nossa equipe comercial</p>
+                            @endif
                         </div>
 
                         <div class="main_property_content_description">

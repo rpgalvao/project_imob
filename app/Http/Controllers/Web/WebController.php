@@ -21,18 +21,38 @@ class WebController extends Controller
 
     public function rent()
     {
-        return view('web.filter');
+        $filter = new FilterController();
+        $filter->clearAllData();
+
+        $properties = Property::rent()->available()->get();
+
+        return view('web.filter', [
+            'properties' => $properties,
+            'type' => 'rent'
+        ]);
     }
 
     public function rentProperty(Request $request)
     {
         $property = Property::where('slug', $request->slug)->first();
-        dd($property);
+
+        return view('web.property', [
+            'property' => $property,
+            'type' => 'rent'
+        ]);
     }
 
     public function buy()
     {
-        return view('web.filter');
+        $filter = new FilterController();
+        $filter->clearAllData();
+
+        $properties = Property::sale()->available()->get();
+
+        return view('web.filter', [
+            'properties' => $properties,
+            'type' => 'sale'
+        ]);
     }
 
     public function buyProperty(Request $request)
@@ -40,13 +60,29 @@ class WebController extends Controller
         $property = Property::where('slug', $request->slug)->first();
 
         return view('web.property', [
-            'property' => $property
+            'property' => $property,
+            'type' => 'sale'
         ]);
     }
 
     public function filter()
     {
-        return view('web.filter');
+        $filter = new FilterController();
+        $itemProperties = $filter->createQuery('id');
+
+        foreach ($itemProperties as $property){
+            $properties[] = $property->id;
+        }
+
+        if(!empty($properties)){
+            $properties = Property::whereIn('id', $properties)->get();
+        } else {
+            $properties = Property::all();
+        }
+
+        return view('web.filter', [
+            'properties' => $properties
+        ]);
     }
 
     public function contact()

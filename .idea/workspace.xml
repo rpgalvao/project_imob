@@ -207,6 +207,8 @@
       <workItem from="1588712662833" duration="1700000" />
       <workItem from="1588714748409" duration="265000" />
       <workItem from="1588715416497" duration="319000" />
+      <workItem from="1588764796776" duration="11628000" />
+      <workItem from="1588797897181" duration="4238000" />
     </task>
     <task id="LOCAL-00001" summary="Property parameters">
       <created>1587391334044</created>
@@ -301,10 +303,11 @@
       <screen x="358" y="0" width="1920" height="1080" />
     </state>
     <state x="623" y="794" key="run.anything.popup/0.1080.1920.1080/358.0.1920.1080@0.1080.1920.1080" timestamp="1587473593531" />
-    <state x="623" y="1318" width="672" height="678" key="search.everywhere.popup" timestamp="1587394633038">
+    <state x="623" y="1318" width="672" height="678" key="search.everywhere.popup" timestamp="1588794495412">
       <screen x="0" y="1080" width="1920" height="1080" />
     </state>
     <state x="623" y="1318" width="672" height="678" key="search.everywhere.popup/0.1080.1920.1080/358.0.1920.1080@0.1080.1920.1080" timestamp="1587394633038" />
+    <state x="623" y="1318" width="672" height="678" key="search.everywhere.popup/0.1080.1920.1080/79.0.1920.1080@0.1080.1920.1080" timestamp="1588794495412" />
     <state x="2543" y="238" width="672" height="678" key="search.everywhere.popup/0.24.1920.1056/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586643630998" />
   </component>
   <component name="XDebuggerManager">

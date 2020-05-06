@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Imobiliária</title>
 
     <link rel="stylesheet" href="{{ url(mix('frontend/assets/css/bootstrap.css')) }}">
@@ -15,6 +15,8 @@
     @hasSection('css')
         @yield('css')
     @endif
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" type="image/png" href="{{ url(asset('frontend/assets/images/favicon.png')) }}"/>
 </head>
@@ -28,7 +30,7 @@
 
                 <div class="d-none d-lg-flex col-lg-4 justify-content-center align-items-center p-2 text-white">
                     <i class="icon-location-arrow"></i>
-                    <p class="my-auto ml-3">Avenida Pequeno Príncipe, 0 - Campeche<br/>Florianópolis/SC</p>
+                    <p class="my-auto ml-3">Avenida Pequeno Príncipe, 0 - Pinheiros<br/>São Paulo/SP</p>
                 </div>
 
                 <div
@@ -40,7 +42,7 @@
                 <div
                     class="d-flex col-12 col-md-6 col-lg-4 justify-content-center align-items-center p-2 text-white mx-auto">
                     <i class="icon-envelope"></i>
-                    <p class="my-auto ml-3">contato@minhaimob.com.br<br/>+55 (48) 3322-1234</p>
+                    <p class="my-auto ml-3">contato@minhaimob.com.br<br/>+55 (11) 3322-1234</p>
                 </div>
 
             </div>
@@ -51,7 +53,7 @@
         <div class="container">
 
             <div class="navbar-brand">
-                <a href="index.php">
+                <a href="{{ route('web.home') }}">
                     <h1 class="text-hide">Imobiliária</h1>
                     <img src="{{ url(asset('frontend/assets/images/logo.png')) }}" width="280" alt="Imobiliária"
                          class="d-inline-block">
@@ -135,8 +137,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <p class="mb-0">Imobiliária | CRECI 1234 | Avenida Pequeno Príncipe, 0 - Campeche Floripa/SC</p>
-                <p class="mb-0">&copy; Todos os Direitos Reservados - @rpg Sistemas ®</p>
+                <p class="mb-0">Imobiliária | CRECI 1234 | Avenida Pequeno Príncipe, 0 - Pinheiros - São Paulo/SP</p>
+                <p class="mb-0">&copy; Todos os Direitos Reservados - <a style="text-decoration: none; color: white" href="http://www.rpgsistemas.com.br" target="_blank">@rpg Sistemas ®</a></p>
             </div>
         </div>
     </div>
