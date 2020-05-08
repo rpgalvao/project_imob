@@ -3,6 +3,7 @@
 namespace LaraDev\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use LaraDev\Company;
 use LaraDev\Http\Controllers\Controller;
 
 class CompanyController extends Controller
@@ -14,7 +15,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+
+        return response()->json($companies);
     }
 
     /**

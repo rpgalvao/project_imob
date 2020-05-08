@@ -127,6 +127,10 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor/coffeecode/cropper" />
       <path value="$PROJECT_DIR$/vendor/coffeecode/optimizer" />
+      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
     </include_path>
   </component>
   <component name="ProjectId" id="1aPCVWMtAFD4el7r2OGESAgSiUg" />
@@ -213,7 +217,7 @@
       <workItem from="1588797897181" duration="4238000" />
       <workItem from="1588851716101" duration="13291000" />
       <workItem from="1588898755655" duration="2915000" />
-      <workItem from="1588937777580" duration="567000" />
+      <workItem from="1588937777580" duration="5930000" />
     </task>
     <task id="LOCAL-00001" summary="Property parameters">
       <created>1587391334044</created>
