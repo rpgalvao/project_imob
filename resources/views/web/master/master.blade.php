@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Imobiliária</title>
+    {!! $head ?? '' !!}
 
     <link rel="stylesheet" href="{{ url(mix('frontend/assets/css/bootstrap.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('frontend/assets/libs/libs.css')) }}">
@@ -68,7 +68,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ route('web.home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="javascript:void(0)" class="nav-link text-front">Destaque</a></li>
+                    <li class="nav-item"><a href="{{ route('web.spotlight') }}" class="nav-link text-front">Destaque</a></li>
                     <li class="nav-item"><a href="{{ route('web.rent') }}" class="nav-link">Alugar</a></li>
                     <li class="nav-item"><a href="{{ route('web.buy') }}" class="nav-link">Comprar</a></li>
                     <li class="nav-item"><a href="{{ route('web.contact') }}" class="nav-link">Contato</a></li>
@@ -108,7 +108,7 @@
                 <h1 class="pb-2">Navegue <span class="text-front">Aqui!</span></h1>
                 <ul>
                     <li><a href="{{ route('web.home') }}">Home</a></li>
-                    <li><a href="javascript:void(0)" class="text-front">Destaque</a></li>
+                    <li><a href="{{ route('web.spotlight') }}" class="text-front">Destaque</a></li>
                     <li><a href="{{ route('web.rent') }}">Alugar</a></li>
                     <li><a href="{{ route('web.buy') }}">Comprar</a></li>
                     <li><a href="{{ route('web.contact') }}">Contato</a></li>
@@ -125,9 +125,9 @@
             </div>
 
             <div class="col-12 col-md-12 col-lg-3 text-center">
-                <button class="btn btn-front icon-facebook icon-notext"></button>
-                <button class="btn btn-front icon-twitter icon-notext"></button>
-                <button class="btn btn-front icon-instagram icon-notext"></button>
+                <a href="http://www.facebook.com" target="_blank" class="btn btn-front icon-facebook icon-notext"></a>
+                <a href="http://www.twitter.com" target="_blank" class="btn btn-front icon-twitter icon-notext"></a>
+                <a href="http://www.instagram.com" target="_blank" class="btn btn-front icon-instagram icon-notext"></a>
             </div>
         </div>
     </div>

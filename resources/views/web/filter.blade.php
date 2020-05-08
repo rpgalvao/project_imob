@@ -111,7 +111,7 @@
                                 <div class="col-12 col-md-12 col-lg-6 mb-4">
                                     <article class="card main_properties_item">
                                         <div class="img-responsive-16by9">
-                                            <a href="{{ route((session('sale') == true || !empty($type) && $type == 'sale' ? 'web.buyProperty' : 'web.rentProperty'), ['slug' => $property->slug]) }}">
+                                            <a href="{{ route((session('sale') == true || !empty($type) && $type == 'sale' || $property->rent == false ? 'web.buyProperty' : 'web.rentProperty'), ['slug' => $property->slug]) }}">
                                                 <img src="{{ $property->cover() }}"
                                                      class="card-img-top"
                                                      alt="">
@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="card-body">
                                             <h2 style="min-height: 150px;"><a
-                                                    href="{{ route((session('sale') == true || !empty($type) && $type == 'sale' ? 'web.buyProperty' : 'web.rentProperty'), ['slug' => $property->slug]) }}"
+                                                    href="{{ route((session('sale') == true || !empty($type) && $type == 'sale' || $property->rent == false ? 'web.buyProperty' : 'web.rentProperty'), ['slug' => $property->slug]) }}"
                                                     class="text-front">{{ $property->title }}</a>
                                             </h2>
                                             <p class="main_properties_item_category">{{ $property->category }}</p>
@@ -131,11 +131,19 @@
                                             @elseif(!empty($type) && $type == 'rent' || session('rent') == true)
                                                 <p class="main_properties_price text-front">R$ {{ $property->rent_price }}/mês</p>
                                             @else
-                                                <p class="main_properties_price text-front">Entre em contato com a nossa equipe comercial</p>
+                                                @if($property->sale == true && !empty($property->sale_price) && $property->rent == true && !empty($property->rent_price))
+                                                    <p class="main_properties_price text-front">R$ {{ $property->sale_price }}
+                                                        <br>ou R$ {{ $property->rent_price }}/mês</p>
+                                                @elseif($property->sale == true && !empty($property->sale_price))
+                                                    <p class="main_properties_price text-front">R$ {{ $property->sale_price }}</p>
+                                                @elseif($property->rent == true && !empty($property->rent_price))
+                                                    <p class="main_properties_price text-front">R$ {{ $property->rent_price }}/mês</p>
+                                                @else
+                                                    <p class="main_properties_price text-front">Entre em contato com a nossa equipe comercial</p>
+                                                @endif
                                             @endif
 
-
-                                            <a href="{{ route((session('sale') == true || !empty($type) && $type == 'sale' ? 'web.buyProperty' : 'web.rentProperty'), ['slug' => $property->slug]) }}"
+                                            <a href="{{ route((session('sale') == true || !empty($type) && $type == 'sale' || $property->rent == false ? 'web.buyProperty' : 'web.rentProperty'), ['slug' => $property->slug]) }}"
                                                class="btn btn-front btn-block">Ver Imóvel</a>
                                         </div>
                                         <div class="card-footer d-flex">
@@ -160,6 +168,11 @@
                                     </article>
                                 </div>
                             @endforeach
+                        @else
+                            <div class="col-12 p-5 bg-white">
+                                <h2 class="text-front icon-info-circle text-center">Ooops, não conseguimos encontrar nenhum imóvel com essa experiência!</h2>
+                                <p class="text-center">Utilize o filtro ao lado para encontrar o imóvel dos seus sonhos...</p>
+                            </div>
                         @endif
 
                     </section>

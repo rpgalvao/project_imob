@@ -126,6 +126,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor/coffeecode/cropper" />
+      <path value="$PROJECT_DIR$/vendor/coffeecode/optimizer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1aPCVWMtAFD4el7r2OGESAgSiUg" />
@@ -142,19 +143,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/contracts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/frontend/assets/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/web" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/frontend/assets/images" />
+      <recent name="$PROJECT_DIR$/resources/views/web/assets/images" />
+      <recent name="$PROJECT_DIR$/app/Support" />
       <recent name="$PROJECT_DIR$/resources/views/admin/contracts" />
       <recent name="$PROJECT_DIR$/resources/views/admin/properties" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/companies" />
-      <recent name="$PROJECT_DIR$/resources/views/admin/users" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/web" />
     </key>
   </component>
   <component name="RunManager">
@@ -209,6 +211,9 @@
       <workItem from="1588715416497" duration="319000" />
       <workItem from="1588764796776" duration="11628000" />
       <workItem from="1588797897181" duration="4238000" />
+      <workItem from="1588851716101" duration="13291000" />
+      <workItem from="1588898755655" duration="2915000" />
+      <workItem from="1588937777580" duration="567000" />
     </task>
     <task id="LOCAL-00001" summary="Property parameters">
       <created>1587391334044</created>

@@ -16,6 +16,9 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
     /** Página Principal */
     Route::get('/', 'WebController@home')->name('home');
 
+    /** Página de Destaque */
+    Route::get('/destaque', 'WebController@spotlight')->name('spotlight');
+
     /** Página de Locação */
     Route::get('/quero-alugar', 'WebController@rent')->name('rent');
 
@@ -28,11 +31,19 @@ Route::group(['namespace' => 'Web', 'as' => 'web.'], function () {
     /** Página de Compra Específica de um Imóvel*/
     Route::get('/quero-comprar/{slug}', 'WebController@buyProperty')->name('buyProperty');
 
+    /** Página de Experiência */
+    Route::get('/experiencias', 'WebController@experiences')->name('experiences');
+
+    /** Página de Experiência Individual por Categoria*/
+    Route::get('/experiencias/{slug}', 'WebController@experienceCategory')->name('experienceCategory');
+
     /** Página de Filtro */
     Route::match(['post', 'get'], '/filtro', 'WebController@filter')->name('filter');
 
     /** Página de Contato */
     Route::get('/contato', 'WebController@contact')->name('contact');
+    Route::post('/contato/sendEmail', 'WebController@sendEmail')->name('sendEmail');
+    Route::get('/contato/sucesso', 'WebController@sendEmailSuccess')->name('sendEmailSuccess');
 
 });
 

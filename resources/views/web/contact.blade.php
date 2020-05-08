@@ -10,14 +10,19 @@
             <p>Preencha o formulário abaixo e vamos lhe direcionar para alguém que entende a sua necessidade!</p>
 
             <div class="row text-left">
-                <form action="">
+                <form action="{{ route('web.sendEmail') }}" method="post">
+                    @csrf
                     <h2 class="icon-envelope text-black-50">Envie um e-mail</h2>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Insira seu nome">
+                        <input type="text" name="name" class="form-control" placeholder="Insira seu nome">
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Insira seu melhor e-mail">
+                        <input type="email" name="email" class="form-control" placeholder="Insira seu melhor e-mail">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" name="cell" class="form-control" placeholder="Informe o celular com DDD">
                     </div>
 
                     <div class="form-group">
@@ -53,9 +58,9 @@
                     <h2 class="icon-share-alt">Redes Sociais</h2>
                     <p>Fique por dentro do tudo o que a gente compartilha em nossas redes sociais!</p>
                     <p>
-                        <button class="btn btn-front icon-facebook icon-notext"></button>
-                        <button class="btn btn-front icon-twitter icon-notext"></button>
-                        <button class="btn btn-front icon-instagram icon-notext"></button>
+                        <a href="http://www.facebook.com" target="_blank" class="btn btn-front icon-facebook icon-notext"></a>
+                        <a href="http://www.twitter.com" target="_blank" class="btn btn-front icon-twitter icon-notext"></a>
+                        <a href="http://www.instagram.com" target="_blank" class="btn btn-front icon-instagram icon-notext"></a>
                     </p>
                 </div>
             </div>
