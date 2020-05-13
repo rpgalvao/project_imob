@@ -87,6 +87,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Property::class, 'user', 'id');
     }
 
+    public function contractsAsAcquirer()
+    {
+        return $this->hasMany(Contract::class, 'acquirer', 'id');
+    }
+
     public function scopeLessors($query)
     {
         return $query->where('lessor', true);
@@ -149,6 +154,11 @@ class User extends Authenticatable implements JWTSubject
     public function setZipcodeAttribute($value)
     {
         return $this->attributes['zipcode'] = $this->clearField($value);
+    }
+
+    public function getZipcodeAttribute($value)
+    {
+        return substr($value, '0', '5') . '-' .substr($value, '5', '8');
     }
 
     public function setTelephoneAttribute($value)

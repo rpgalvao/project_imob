@@ -53,7 +53,7 @@ class AuthController extends Controller
             'contractsFinished' => $contractsFinished,
             'contractsTotal' => $contractsTotal,
             'contracts' => $contracts,
-            'properties' => $properties
+            'properties' => $properties,
         ]);
     }
 
@@ -71,11 +71,17 @@ class AuthController extends Controller
 
         $credentials = [
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
         ];
 
         if (!Auth::attempt($credentials)) {
             $json['message'] = $this->message->error('Oooops, o e-mail e/ou a senha são inválidas')->render();
+            return response()->json($json);
+        }
+
+        if(!$this->isAdmin()){
+            Auth::logout();
+            $json['message'] = $this->message->error('Oooops, esse usuário não tem permissão para acessar o painel de administração!')->render();
             return response()->json($json);
         }
 
@@ -90,12 +96,23 @@ class AuthController extends Controller
         return redirect()->route('admin.login');
     }
 
+    private function isAdmin()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if ($user->admin === 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private function authenticated(string $ip)
     {
         $user = User::where('id', Auth::user()->id);
         $user->update([
             'last_login_at' => date('Y-m-d H:i:s'),
-            'last_login_ip' => $ip
+            'last_login_ip' => $ip,
         ]);
     }
 }

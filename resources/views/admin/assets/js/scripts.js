@@ -201,7 +201,7 @@ $(function () {
         normalizeSpouse()
     });
 
-    // ENABLE INPUT TO PRICE
+    // ENABLE INPUT TO SALE PRICE
     $('input[type="checkbox"][name="sale"]').change(function () {
         if ($(this).get(0).checked) {
             $('input[name="sale_price"]').attr('disabled', false);
@@ -210,7 +210,7 @@ $(function () {
         }
     });
 
-    // ENABLE INPUT TO PRICE
+    // ENABLE INPUT TO RENT PRICE
     $('input[type="checkbox"][name="rent"]').change(function () {
         if ($(this).get(0).checked) {
             $('input[name="rent_price"]').attr('disabled', false);
@@ -218,6 +218,22 @@ $(function () {
             $('input[name="rent_price"]').attr('disabled', true);
         }
     });
+
+    // ENABLE INPUT TO CONTRACT PURPOSE
+    $('input[type="radio"][name="purpose"]').change(function () {
+        if ($(this).val() == 'sale') {
+            $('input[name="sale_price"]').attr('disabled', false);
+        } else {
+            $('input[name="sale_price"]').attr('disabled', true);
+        }
+
+        if ($(this).val() == 'rent') {
+            $('input[name="rent_price"]').attr('disabled', false);
+        } else {
+            $('input[name="rent_price"]').attr('disabled', true);
+        }
+    });
+
 });
 
 // TINYMCE INIT

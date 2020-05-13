@@ -62,9 +62,13 @@ class WebController extends Controller
     {
         $property = Property::where('slug', $request->slug)->first();
 
+//        $property->views = $property->views + 1;
+        $property->increment('views');
+        $property->save();
+
         $head = $this->seo->render(env('APP_NAME') . ' - Alugar',
             $property->headline ?? $property->title,
-            route('web.rentProperty', ['property' => $property->slug]),
+            route('web.rentProperty', ['slug' => $property->slug]),
             $property->cover());
 
         return view('web.property', [
@@ -97,9 +101,13 @@ class WebController extends Controller
     {
         $property = Property::where('slug', $request->slug)->first();
 
+//        $property->views = $property->views + 1;
+        $property->increment('views');
+        $property->save();
+
         $head = $this->seo->render(env('APP_NAME') . ' - Comprar',
             $property->headline ?? $property->title,
-            route('web.buyProperty', ['property' => $property->slug]),
+            route('web.buyProperty', ['slug' => $property->slug]),
             $property->cover());
 
         return view('web.property', [
@@ -161,36 +169,36 @@ class WebController extends Controller
         if ($request->slug == 'cobertura') {
             $head = $this->seo->render(env('APP_NAME') . ' - Cobertura',
                 'Desfrute da experiência de morar em uma cobertura fantástica',
-                route('web.experienceCategory', ['category' => 'cobertura']),
+                route('web.experienceCategory', ['slug' => 'cobertura']),
                 asset('frontend/assets/images/share.jpg'));
             $properties = Property::where('experience', 'Cobertura')->get();
         } elseif ($request->slug == 'alto-padrao') {
             $head = $this->seo->render(env('APP_NAME') . ' - Alto Padrão',
                 'Desfrute da experiência de morar em um imóvel de alto padrão',
-                route('web.experienceCategory', ['category' => 'alto-padrao']),
+                route('web.experienceCategory', ['slug' => 'alto-padrao']),
                 asset('frontend/assets/images/share.jpg'));
             $properties = Property::where('experience', 'Alto Padrão')->get();
         } elseif ($request->slug == 'de-frente-para-o-mar') {
             $head = $this->seo->render(env('APP_NAME') . ' - Vista pro Mar',
                 'Desfrute da experiência de morar de frente para o mar',
-                route('web.experienceCategory', ['category' => 'de-frente-para-o-mar']),
+                route('web.experienceCategory', ['slug' => 'de-frente-para-o-mar']),
                 asset('frontend/assets/images/share.jpg'));
             $properties = Property::where('experience', 'De Frente para o Mar')->get();
         } elseif ($request->slug == 'condominio-fechado') {$head = $this->seo->render(env('APP_NAME') . ' - Condomínio Fechado',
             'Desfrute da experiência de morar com toda a segurança em um condomínio fechado',
-            route('web.experienceCategory', ['category' => 'condominio-fechado']),
+            route('web.experienceCategory', ['slug' => 'condominio-fechado']),
             asset('frontend/assets/images/share.jpg'));
             $properties = Property::where('experience', 'Condominio Fechado')->get();
         } elseif ($request->slug == 'compacto') {
             $head = $this->seo->render(env('APP_NAME') . ' - Compacto',
                 'Desfrute da experiência de morar em um imóvel compacto e funcional',
-                route('web.experienceCategory', ['category' => 'compacto']),
+                route('web.experienceCategory', ['slug' => 'compacto']),
                 asset('frontend/assets/images/share.jpg'));
             $properties = Property::where('experience', 'Compacto')->get();
         } elseif ($request->slug == 'lojas-e-salas') {
             $head = $this->seo->render(env('APP_NAME') . ' - Lojas e Salas',
                 'Desfrute da experiência de trabalhar em um ambiente feito sob medida para o seu negócio',
-                route('web.experienceCategory', ['category' => 'lojas-e-salas']),
+                route('web.experienceCategory', ['slug' => 'lojas-e-salas']),
                 asset('frontend/assets/images/share.jpg'));
             $properties = Property::where('experience', 'Lojas e Salas')->get();
         } else {

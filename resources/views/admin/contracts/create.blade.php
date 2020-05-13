@@ -55,12 +55,12 @@
                             <div class="label_gc">
                                 <span class="legend">Finalidade:</span>
                                 <label class="label">
-                                    <input type="checkbox"
-                                           name="sale" {{ (old('sale') == 'on' ? 'checked' : '') }}><span>Venda</span>
+                                    <input type="radio"
+                                           name="purpose" value="sale" {{ (old('purpose') == 'sale' ? 'checked' : '') }}><span>Venda</span>
                                 </label>
 
                                 <label class="label">
-                                    <input type="checkbox" name="rent" {{ old('rent') == 'on' ? 'checked' : '' }}><span>Locação</span>
+                                    <input type="radio" name="purpose" value="rent" {{ old('purpose') == 'rent' ? 'checked' : '' }}><span>Locação</span>
                                 </label>
                             </div>
 

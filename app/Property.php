@@ -177,6 +177,16 @@ class Property extends Model
         return number_format($value, 2, ',', '.');
     }
 
+    public function setZipcodeAttribute($value)
+    {
+        return $this->attributes['zipcode'] = $this->clearField($value);
+    }
+
+    public function getZipcodeAttribute($value)
+    {
+        return substr($value, '0', '5') . '-' .substr($value, '5', '8');
+    }
+
     public function setAirConditioningAttribute($value)
     {
         $this->attributes['air_conditioning'] = ($value == 'on' || $value == true ? 1 : 0);
@@ -263,6 +273,15 @@ class Property extends Model
             $this->attributes['slug'] = str_slug($this->title) . '-' . $this->id;
             $this->save();
         }
+    }
+
+    private function clearField(?string $param)
+    {
+        if (empty($param)) {
+            return '';
+        }
+
+        return str_replace(['.', '-', '_', '(', ')', ' ', '/'], '', $param);
     }
 
     private function convertStringToDouble($param)

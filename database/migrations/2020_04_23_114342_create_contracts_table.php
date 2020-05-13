@@ -15,8 +15,7 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('sale');
-            $table->boolean('rent');
+            $table->string('purpose')->nullable();
             $table->unsignedInteger('owner');
             $table->boolean('owner_spouse')->nullable();
             $table->unsignedInteger('owner_company')->nullable();

@@ -40,7 +40,7 @@
                     <tbody>
                     @foreach($companies as $company)
                         <tr>
-                            <td><a href="{{ route('admin.companies.edit', ['id' => $company->id]) }}" class="text-orange">{{ $company->social_name }}</a></td>
+                            <td><a href="{{ route('admin.companies.edit', ['company' => $company->id]) }}" class="text-orange">{{ $company->social_name }}</a></td>
                             <td>{{ $company->alias_name }}</td>
                             <td>{{ $company->document_company }}</td>
                             <td>{{ $company->document_company_secondary }}</td>

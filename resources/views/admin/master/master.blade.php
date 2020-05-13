@@ -31,7 +31,7 @@
 
 @php
 $user = \Illuminate\Support\Facades\Auth::user();
-if(\Illuminate\Support\Facades\File::exists(public_path() . '/storage/' . \Illuminate\Support\Facades\Auth::user()->cover)){
+if(!empty($user->cover && \Illuminate\Support\Facades\File::exists(public_path() . '/storage/' . $user->cover))){
     $cover = $user->url_cover;
 }else{
     $cover = url(asset('backend/assets/images/avatar.jpg'));
@@ -84,7 +84,7 @@ if(\Illuminate\Support\Facades\File::exists(public_path() . '/storage/' . \Illum
                             href="{{ route('admin.contracts.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
+            <li class="dash_sidebar_nav_item"><a class="icon-reply" href="{{ route('web.home') }}" target="_blank">Ver Site</a></li>
             <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout') }}"
                                                  target="_blank">Sair</a></li>
         </ul>

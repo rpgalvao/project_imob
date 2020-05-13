@@ -61,12 +61,12 @@
                             <div class="label_gc">
                                 <span class="legend">Finalidade:</span>
                                 <label class="label">
-                                    <input type="checkbox"
-                                           name="sale" {{ (old('sale') == 'on' ? 'checked' : ($contract->sale == true ? 'checked' : '')) }}><span>Venda</span>
+                                    <input type="radio"
+                                           name="purpose" value="sale" {{ (old('purpose') == 'sale' ? 'checked' : ($contract->purpose == 'sale' ? 'checked' : '')) }}><span>Venda</span>
                                 </label>
 
                                 <label class="label">
-                                    <input type="checkbox" name="rent" {{ old('rent') == 'on' ? 'checked' : ($contract->rent == true ? 'checked' : '') }}><span>Locação</span>
+                                    <input type="radio" name="purpose" value="rent" {{ old('purpose') == 'rent' ? 'checked' : ($contract->purpose == 'rent' ? 'checked' : '') }}><span>Locação</span>
                                 </label>
                             </div>
 
@@ -180,16 +180,16 @@
                                             <span class="legend">Valor de Venda:</span>
                                             <input type="tel" name="sale_price" class="mask-money"
                                                    placeholder="Valor de Venda"
-                                                   value="{{ ($contract->sale == true ? $contract->price : '0,00') }}"
-                                                    {{ ($contract->sale != true ? 'disabled' : '') }}/>
+                                                   value="{{ ($contract->purpose == 'sale' ? $contract->price : '0,00') }}"
+                                                    {{ ($contract->purpose != 'sale' ? 'disabled' : '') }}/>
                                         </label>
 
                                         <label class="label">
                                             <span class="legend">Valor de Locação:</span>
                                             <input type="text" name="rent_price" class="mask-money"
                                                    placeholder="Valor de Locação"
-                                                   value="{{ ($contract->rent == true ? $contract->price : '0,00') }}"
-                                                    {{ ($contract->rent != true ? 'disabled' : '') }}/>
+                                                   value="{{ ($contract->purpose == 'rent' ? $contract->price : '0,00') }}"
+                                                    {{ ($contract->purpose != 'rent' ? 'disabled' : '') }}/>
                                         </label>
                                     </div>
 

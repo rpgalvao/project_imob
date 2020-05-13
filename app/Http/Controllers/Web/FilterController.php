@@ -320,6 +320,7 @@ class FilterController extends Controller
         $limitPrice = session('limit_price');
 
         return DB::table('properties')
+            ->where('status', '=', '1')
             ->when($sale, function ($query, $sale) {
                 return $query->where('sale', $sale);
             })

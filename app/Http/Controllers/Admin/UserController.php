@@ -62,9 +62,8 @@ class UserController extends Controller
             $userCreate->save();
         }
 
-        return redirect()->route('admin.users.edit', [
-            'users' => $userCreate->id
-        ])->with(['color' => 'green', 'message' => 'Cliente cadastrado com sucesso!']);
+        return redirect()->route('admin.users.edit', $userCreate->id)
+            ->with(['color' => 'green', 'message' => 'Cliente cadastrado com sucesso!']);
     }
 
     /**
@@ -125,9 +124,8 @@ class UserController extends Controller
             return redirect()->back()->withInput()->withErrors();
         }
 
-        return redirect()->route('admin.users.edit', [
-            'users' => $user->id
-        ])->with(['color' => 'green', 'message' => 'Cliente atualizado com sucesso!']);
+        return redirect()->route('admin.users.edit', $user->id)
+            ->with(['color' => 'green', 'message' => 'Cliente atualizado com sucesso!']);
 
     }
 

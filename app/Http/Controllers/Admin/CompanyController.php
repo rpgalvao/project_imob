@@ -81,7 +81,7 @@ class CompanyController extends Controller
 
         return view('admin.companies.edit', [
             'company' => $company,
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
