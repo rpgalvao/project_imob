@@ -51,7 +51,7 @@
                     </li>
                 </ul>
 
-                <form action="{{ route('admin.properties.update', ['id' => $property->id]) }}" method="post"
+                <form action="{{ route('admin.properties.update', ['property' => $property->id]) }}" method="post"
                       class="app_form" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

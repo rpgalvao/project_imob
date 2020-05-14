@@ -34,7 +34,7 @@
         @endif
         <div class="dash_content_app_box">
             <div class="dash_content_app_box_stage">
-                <form class="app_form" action="{{ route('admin.companies.update', ['id' => $company->id ]) }}"
+                <form class="app_form" action="{{ route('admin.companies.update', ['company' => $company->id ]) }}"
                       method="post">
                     @csrf
                     @method('PUT')
@@ -47,7 +47,7 @@
                             @endforeach
                         </select>
                         <p style="margin-top: 4px;">
-                            <a href="{{ route('admin.users.edit', ['id' => $user->id]) }}" class="text-orange icon-link" style="font-size: .8em;" target="_blank">Acessar
+                            <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}" class="text-orange icon-link" style="font-size: .8em;" target="_blank">Acessar
                                 Cadastro</a>
                         </p>
                     </label>

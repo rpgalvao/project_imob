@@ -5,6 +5,7 @@ namespace LaraDev;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use LaraDev\Support\Cropper;
 
 class Property extends Model
@@ -270,7 +271,7 @@ class Property extends Model
     public function setSlug()
     {
         if(!empty($this->title)){
-            $this->attributes['slug'] = str_slug($this->title) . '-' . $this->id;
+            $this->attributes['slug'] = Str::slug($this->title . '-' . $this->id, '-');
             $this->save();
         }
     }
