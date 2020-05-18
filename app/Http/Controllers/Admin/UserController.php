@@ -4,10 +4,12 @@ namespace LaraDev\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\User as UserRequest;
 use LaraDev\Support\Cropper;
 use LaraDev\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -20,7 +22,7 @@ class UserController extends Controller
     {
         $users = User::all();
         return view('admin.users.index', [
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -33,7 +35,7 @@ class UserController extends Controller
     {
         $users = User::where('admin', 1)->get();
         return view('admin.users.team', [
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -44,7 +46,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            $role->can == false;
+        }
+
+        return view('admin.users.create', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -60,6 +69,20 @@ class UserController extends Controller
         if (!empty($request->file('cover'))) {
             $userCreate->cover = $request->file('cover')->store('user');
             $userCreate->save();
+        }
+
+        $rolesRequest = $request->all();
+        $roles = null;
+        foreach ($rolesRequest as $key => $value) {
+            if (Str::is('acl_*', $key) == true){
+                $roles[] = Role::findById(ltrim($key, 'acl_'));
+            }
+        }
+
+        if(!empty($roles)){
+            $userCreate->syncRoles($roles);
+        }else{
+            $userCreate->syncRoles(null);
         }
 
         return redirect()->route('admin.users.edit', $userCreate->id)
@@ -86,9 +109,18 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->first();
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            if ($user->hasRole($role->name)) {
+                $role->can = true;
+            } else {
+                $role->can = false;
+            }
+        }
 
         return view('admin.users.edit', [
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles,
         ]);
     }
 
@@ -108,7 +140,7 @@ class UserController extends Controller
         $user->setAdminAttribute($request->admin);
         $user->setClientAttribute($request->client);
 
-        if(!empty($request->file('cover'))){
+        if (!empty($request->file('cover'))) {
             Storage::delete($user->cover);
             Cropper::flush($user->cover);
             $user->cover = '';
@@ -120,8 +152,22 @@ class UserController extends Controller
             $user->cover = $request->file('cover')->store('user');
         }
 
-        if(!$user->save()){
+        if (!$user->save()) {
             return redirect()->back()->withInput()->withErrors();
+        }
+
+        $rolesRequest = $request->all();
+        $roles = null;
+        foreach ($rolesRequest as $key => $value) {
+            if (Str::is('acl_*', $key) == true){
+                $roles[] = Role::findById(ltrim($key, 'acl_'));
+            }
+        }
+
+        if(!empty($roles)){
+            $user->syncRoles($roles);
+        }else{
+            $user->syncRoles(null);
         }
 
         return redirect()->route('admin.users.edit', $user->id)

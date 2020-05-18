@@ -7,11 +7,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 use LaraDev\Support\Cropper;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -100,6 +101,41 @@ class User extends Authenticatable implements JWTSubject
     public function scopeLessees($query)
     {
         return $query->where('lessee', true);
+    }
+
+    public function getCivilStatusTranslateAttribute(string $status, string $genre)
+    {
+
+        if ($genre === 'female') {
+            if ($status === 'married') {
+                return 'casada';
+            } elseif ($status === 'separated') {
+                return 'separada';
+            } elseif ($status === 'single') {
+                return 'solteira';
+            } elseif ($status === 'divorced') {
+                return 'divorciada';
+            } elseif ($status === 'widower') {
+                return 'viúva';
+            } else {
+                return '';
+            }
+        } else {
+            if ($status === 'married') {
+                return 'casado';
+            } elseif ($status === 'separated') {
+                return 'separado';
+            } elseif ($status === 'single') {
+                return 'solteiro';
+            } elseif ($status === 'divorced') {
+                return 'divorciado';
+            } elseif ($status === 'widower') {
+                return 'viúvo';
+            } else {
+                return '';
+            }
+        }
+
     }
 
     public function getUrlCoverAttribute()

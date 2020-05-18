@@ -58,8 +58,10 @@ if(!empty($user->cover && \Illuminate\Support\Facades\File::exists(public_path()
                 <ul class="dash_sidebar_nav_submenu">
                     <li class="{{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">Ver
                             Todos</a></li>
+                    @can('Listar Empresas')
                     <li class="{{ isActive('admin.companies.index') }}"><a href="{{ route('admin.companies.index') }}">Empresas</a>
                     </li>
+                    @endcan
                     <li class="{{ isActive('admin.users.team') }}"><a href="{{ route('admin.users.team') }}">Time</a>
                     </li>
                     <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar
@@ -82,6 +84,14 @@ if(!empty($user->cover && \Illuminate\Support\Facades\File::exists(public_path()
                             Todos</a></li>
                     <li class="{{ isActive('admin.contracts.create') }}"><a
                             href="{{ route('admin.contracts.create') }}">Criar Novo</a></li>
+                </ul>
+            </li>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.role') }} {{ isActive('admin.permission') }}"><a class="icon-cog"
+                                                                                   href="{{ route('admin.role.index') }}">Configurações</a>
+                <ul class="dash_sidebar_nav_submenu">
+                    <li class="{{ isActive('admin.role.index') }}"><a href="{{ route('admin.role.index') }}">Perfis</a></li>
+                    <li class="{{ isActive('admin.permission.index') }}"><a
+                            href="{{ route('admin.permission.index') }}">Permissões</a></li>
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="{{ route('web.home') }}" target="_blank">Ver Site</a></li>

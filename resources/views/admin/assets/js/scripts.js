@@ -234,6 +234,16 @@ $(function () {
         }
     });
 
+    // ENABLE INPUT PERMISSION
+    $('input[type="checkbox"][name="admin"]').change(function () {
+
+        if ($(this).get(0).checked) {
+            $('input[type="checkbox"][id="acl_permissions"]').attr('disabled', false);
+        } else {
+            $('input[type="checkbox"][id="acl_permissions"]').attr('disabled', true);
+        }
+    });
+
 });
 
 // TINYMCE INIT

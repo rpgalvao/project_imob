@@ -467,6 +467,12 @@
                                            name="client" {{ old('client') === true || old('client') === 'on' ? 'checked' : ''}}><span>Cliente</span>
                                 </label>
                             </div>
+                            @foreach($roles as $role)
+                                <label class="label">
+                                    <input type="checkbox"
+                                           id="acl_permissions" name="acl_{{ $role->id }}" {{ ($role->can == 1 ? 'checked' : '')}} disabled><span>{{ $role->name }}</span>
+                                </label>
+                            @endforeach
                         </div>
                     </div>
 

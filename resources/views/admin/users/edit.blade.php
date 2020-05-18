@@ -458,11 +458,13 @@
                                         @endif
                                     </div>
 
-                                    <p class="text-right">
-                                        <a href="{{ route('admin.companies.create', ['user' => $user->id]) }}"
-                                           class="btn btn-green icon-building-o">Cadastrar
-                                            Nova Empresa</a>
-                                    </p>
+                                    @can('Cadastrar Empresa')
+                                        <p class="text-right">
+                                            <a href="{{ route('admin.companies.create', ['user' => $user->id]) }}"
+                                               class="btn btn-green icon-building-o">Cadastrar
+                                                Nova Empresa</a>
+                                        </p>
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -684,8 +686,8 @@
                                                         </div>
                                                     @endif
                                                 @endforeach
-                                                <div class="no-content">Não foram encontrados registros!</div>
                                             @endif
+                                            <div class="no-content">Não foram encontrados registros!</div>
                                         </div>
                                     </div>
                                 </div>
@@ -705,6 +707,12 @@
                                            name="client" {{ old('client') == true || old('client') == 'on' ? 'checked' : ($user->client == true ? 'checked' : '')}}><span>Cliente</span>
                                 </label>
                             </div>
+                            @foreach($roles as $role)
+                                <label class="label">
+                                    <input type="checkbox"
+                                           name="acl_{{ $role->id }}" {{ ($role->can == 1 ? 'checked' : '') }}><span>{{ $role->name }}</span>
+                                </label>
+                            @endforeach
                         </div>
                     </div>
 

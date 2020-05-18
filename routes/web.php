@@ -78,6 +78,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::get('users/team', 'UserController@team')->name('users.team');
         Route::resource('users', 'UserController');
 
+        /** Perfis (Roles) */
+        Route::get('/role/{role}/permissions', 'ACL\\RoleController@permissions')->name('role.permissions');
+        Route::put('/role/{role}/permissions/sync', 'ACL\\RoleController@permissionsSync')->name('role.permissionsSync');
+        Route::resource('/role', 'ACL\\RoleController');
+
+        /** Permissions */
+        Route::resource('/permission', 'ACL\\PermissionController');
+
         /** Company */
         Route::resource('companies', 'CompanyController');
 

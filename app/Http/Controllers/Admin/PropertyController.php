@@ -62,7 +62,7 @@ class PropertyController extends Controller
         if ($request->allFiles()) {
             foreach ($request->allFiles()['files'] as $image) {
                 $propImage = new PropertyImage();
-                $propImage->id = $createProperty->id;
+                $propImage->property = $createProperty->id;
                 $propImage->path = $image->store('properties/' . $createProperty->id);
                 $propImage->save();
                 unset($propImage);

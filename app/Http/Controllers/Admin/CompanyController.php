@@ -3,10 +3,12 @@
 namespace LaraDev\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use LaraDev\Company;
 use LaraDev\Http\Controllers\Controller;
 use LaraDev\Http\Requests\Admin\Company as CompanyRequest;
 use LaraDev\User;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class CompanyController extends Controller
 {
@@ -17,6 +19,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->hasPermissionTo('Listar Empresas')){
+            throw new UnauthorizedException('403', 'You do not have permission to access this function');
+        }
+
         $companies = Company::all();
         return view('admin.companies.index', [
             'companies' => $companies
@@ -30,6 +36,10 @@ class CompanyController extends Controller
      */
     public function create(Request $request)
     {
+        if (!Auth::user()->hasPermissionTo('Cadastrar Empresa')){
+            throw new UnauthorizedException('403', 'You do not have permission to access this function');
+        }
+
         $users = User::orderBy('name')->get();
 
         if(!empty($request->user)){
@@ -50,10 +60,14 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
+        if (!Auth::user()->hasPermissionTo('Cadastrar Empresa')){
+            throw new UnauthorizedException('403', 'You do not have permission to access this function');
+        }
+
         $companyCreate = Company::create($request->all());
 
         return redirect()->route('admin.users.edit', [
-            'users' => $companyCreate->id
+            'user' => $companyCreate->id
         ])->with(['color' => 'green', 'message' => 'Empresa cadastrada com sucesso!']);
     }
 
@@ -76,6 +90,10 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')){
+            throw new UnauthorizedException('403', 'You do not have permission to access this function');
+        }
+
         $company = Company::where('id', $id)->first();
         $users = User::orderBy('name')->get();
 
@@ -94,6 +112,10 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, $id)
     {
+        if (!Auth::user()->hasPermissionTo('Editar Empresa')){
+            throw new UnauthorizedException('403', 'You do not have permission to access this function');
+        }
+
         $company = Company::where('id', $id)->first();
         $company->fill($request->all());
         $company->save();
